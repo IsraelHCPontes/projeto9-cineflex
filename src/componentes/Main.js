@@ -1,84 +1,17 @@
 import styled from 'styled-components';
 import Movie from '../Assets/img/image 3.svg'
+import Tela01 from './Tela01';
+import Tela02 from './Tela02';
+import Tela03 from './Tela03';
+
 
 
 export default function Main(){
     return(
-    <Container>  
-        <TopContainer>
-            <h1>Selecione o filme</h1>
-        </TopContainer>
-        <BodyContainer>
-            <Left>
-                <BoxMovie>
-                    <img src={Movie}/>
-                </BoxMovie>
-            </Left>
-            <Right>
-                <BoxMovie></BoxMovie>
-            </Right>
-        </BodyContainer>
-    </Container>  
+        <>
+        {/* <Tela01/> */}
+        {/* <Tela02/> */}
+        <Tela03/>
+        </>
     )
 }
-
-
-
-const Container =styled.div`
-    margin-top: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-`;
-
-const TopContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 28px;
-    letter-spacing: 0.04em;
-    text-align: center;
-`;
-
-const BodyContainer = styled.div`
-    margin-top: 50px;
-    width: 320px;
-    display: flex;
-    justify-content: space-between;
-   
-   `;
-
-const Left = styled.div`
-
-`
-
-const Right = styled.div`
-
-`
-const BoxMovie = styled.div`
-    height: 209px;
-    width: 145px;
-    left: 30px;
-    top: 169px;
-    border-radius: 3px;
-    background: #FFFFFF;
-    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    img {
-        height: 193px;
-        width: 129px;
-        left: 38px;
-        top: 177px;
-        border-radius: 0px;
-
-    }
-
-`
