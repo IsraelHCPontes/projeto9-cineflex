@@ -61,12 +61,13 @@ const BodyContainer = styled.div`
     width: 320px;
     display: flex;
     justify-content: space-between;
-    overflow-y: auto;
+    
     `;
 
  const BoxAssentos   = styled.div`
     
     display: flex;
+    flex-wrap: wrap;
     
     button {
         

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
@@ -11,14 +12,18 @@ export default function Tela02(){
         <BodyContainer>
            <h3>Quinta-feira - 24/06/2021</h3>
            <ContainerHorarios>
-            <button>15:00</button>
-            <button>15:00</button>
-            <button>15:00</button>
-            <button>15:00</button>
-            <button>15:00</button>
-            <button>15:00</button>
-            <button>15:00</button>
-            <button>15:00</button>
+           <Link to="/Tela03"> 
+             <button>15:00</button>
+            </Link>
+            <Link to="/Tela03"> 
+             <button>15:00</button>
+            </Link>
+            <Link to="/Tela03"> 
+             <button>15:00</button>
+            </Link>
+            <Link to="/Tela03"> 
+             <button>15:00</button>
+            </Link>
            </ContainerHorarios>
 
            <h3>Quinta-feira - 24/06/2021</h3>

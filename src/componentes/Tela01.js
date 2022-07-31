@@ -1,27 +1,52 @@
+import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import Movie from '../Assets/img/image 3.svg'
 
 
 export default function Tela01(){
+
+    const [items, setItems] = useState(null);
+
+	useEffect(() => {
+		const requisicao = axios.get("https://mock-api.driven.com.br/api/v7/cineflex/movies");
+
+		requisicao.then(resposta => {
+			setItems(resposta.data);
+		});
+	}, []);
+
+	if(items === null) {
+		return <img src="loading.gif" />;
+	}
     return(
     <Container>  
         <TopContainer>
             <h2>Selecione o filme</h2>
         </TopContainer>
         <BodyContainer>
-            <Left>
-                <BoxMovie>
-                    <img src={Movie}/>
-                </BoxMovie>
-            </Left>
-            <Right>
-                <BoxMovie></BoxMovie>
-            </Right>
+        
+			{items.map(items => <Filme Movie={items.posterURL}/>)}
+		
+               
         </BodyContainer>
     </Container>  
     )
 }
 
+
+
+ function Filme({Movie}) {
+
+	return (
+	  <BoxMovie>
+           <Link to="/Tela02">
+               <img src={Movie}/>
+           </Link>
+       </BoxMovie>
+	);
+}
 
 
 const Container =styled.div`
@@ -50,17 +75,13 @@ const BodyContainer = styled.div`
     display: flex;
     justify-content: space-between;
     overflow-y: auto;
+    flex-wrap: wrap;
    
    `;
 
-const Left = styled.div`
 
-`
-
-const Right = styled.div`
-
-`
 const BoxMovie = styled.div`
+    margin-bottom: 11px;
     height: 209px;
     width: 145px;
     left: 30px;
