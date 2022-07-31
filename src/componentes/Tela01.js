@@ -17,10 +17,9 @@ export default function Tela01(){
 		});
 	}, []);
 
-	if(items === null) {
-		return <img src="loading.gif" />;
-	}
-    return(
+	
+
+    return((items === null)? <img src="loading.gif" />:
     <Container>  
         <TopContainer>
             <h2>Selecione o filme</h2>

@@ -25,7 +25,7 @@ export default function Tela02(){
 function Times(){
     const [day, setDay] = useState(null);
     const { movieId } = useParams()
-    console.log(movieId)
+    
 
 	useEffect(() => {
 
@@ -33,19 +33,17 @@ function Times(){
 
 		requisicao.then(resposta => {
 			setDay(resposta.data.days);
+            console.log(movieId)
 		});
 	}, []);
 
    
-
-	if(day === null) {
-		return <img src="loading.gif" />;
-	}
     return (
+	(day === null) ? <img src="caregando..." /> :
         day.map(({weekday, date, showtimes}, index) => <>
         <h3>{weekday} - {date}</h3>
             <ContainerHorarios>
-               { showtimes.map(({name}) => <Link to="/Tela03"> 
+               { showtimes.map(({name, id}) => <Link to={`/Tela03/${id}`}> 
                  <button>{name}</button>
                 </Link>)}
             </ContainerHorarios>

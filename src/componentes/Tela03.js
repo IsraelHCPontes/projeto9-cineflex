@@ -1,8 +1,25 @@
 import styled from 'styled-components';
-import Movie from '../Assets/img/image 3.svg'
+import  { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function Tela03(){
+
+    const [seats, setSeats] = useState([]);
+    const { sessaoId } = useParams()
+    
+    
+	useEffect(() => {
+
+		const requisicao = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${sessaoId}/seats`);
+        
+		requisicao.then(resposta => {
+			setSeats(resposta.data.seats);
+            console.log(seats)
+		});
+	}, []);
+
     return(
     <Container>  
         <TopContainer>
@@ -10,29 +27,13 @@ export default function Tela03(){
         </TopContainer>
         <BodyContainer>
          <BoxAssentos>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
-            <button>01</button>
+          {seats.map(({name})=><button>{name}</button>)}
          </BoxAssentos>
         </BodyContainer>
     </Container>  
     )
 }
+
 
 
 
@@ -58,7 +59,7 @@ const TopContainer = styled.div`
 
 const BodyContainer = styled.div`
     margin-top: 50px;
-    width: 320px;
+    width: 380px;
     display: flex;
     justify-content: space-between;
     
@@ -80,7 +81,7 @@ const BodyContainer = styled.div`
         align-items: center;
         border: 1px solid #808F9D;
         background-color: #C3CFD9;
-        margin: 7px;
+        margin: 8px 6px;
     }
  `
 
