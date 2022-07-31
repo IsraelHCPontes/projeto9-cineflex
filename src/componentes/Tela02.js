@@ -1,40 +1,57 @@
-import { Link } from 'react-router-dom';
+import  { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 
 
 
 export default function Tela02(){
+
     return(
+
     <Container>  
         <TopContainer>
             <h2>Selecione o horário</h2>
         </TopContainer>
         <BodyContainer>
-           <h3>Quinta-feira - 24/06/2021</h3>
-           <ContainerHorarios>
-           <Link to="/Tela03"> 
-             <button>15:00</button>
-            </Link>
-            <Link to="/Tela03"> 
-             <button>15:00</button>
-            </Link>
-            <Link to="/Tela03"> 
-             <button>15:00</button>
-            </Link>
-            <Link to="/Tela03"> 
-             <button>15:00</button>
-            </Link>
-           </ContainerHorarios>
-
-           <h3>Quinta-feira - 24/06/2021</h3>
-           <ContainerHorarios>
-            <button>15:00</button>
-           </ContainerHorarios>
+            <Times />
         </BodyContainer>
     </Container>  
+
     )
 }
 
+
+function Times(){
+    const [day, setDay] = useState(null);
+    const { movieId } = useParams()
+    console.log(movieId)
+
+	useEffect(() => {
+
+		const requisicao = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/movies/${movieId}/showtimes`);
+
+		requisicao.then(resposta => {
+			setDay(resposta.data.days);
+		});
+	}, []);
+
+   
+
+	if(day === null) {
+		return <img src="loading.gif" />;
+	}
+    return (
+        day.map(({weekday, date, showtimes}, index) => <>
+        <h3>{weekday} - {date}</h3>
+            <ContainerHorarios>
+               { showtimes.map(({name}) => <Link to="/Tela03"> 
+                 <button>{name}</button>
+                </Link>)}
+            </ContainerHorarios>
+        </>
+    ))
+} 
 
 
 const Container =styled.div`
@@ -63,7 +80,7 @@ const BodyContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow-y: auto;
+    overflow: hidden;
 
     h3 {
         font-family: Roboto;

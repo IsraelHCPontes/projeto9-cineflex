@@ -15,7 +15,7 @@ export default function App(){
             <NavBar/>
             <Routes>
               <Route path="/" element={<Tela01/>}/>  
-              <Route path="/Tela02" element={<Tela02/>}/>            
+              <Route path="/Tela02/:movieId" element={<Tela02/>}/>            
               <Route path="/Tela03" element={<Tela03/>}/>   
              </Routes>
         </BrowserRouter>

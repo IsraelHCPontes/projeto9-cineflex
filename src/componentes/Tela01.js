@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Movie from '../Assets/img/image 3.svg'
 
 
-export default function Tela01(){
+export default function Tela01(){  
 
     const [items, setItems] = useState(null);
 
@@ -27,7 +27,7 @@ export default function Tela01(){
         </TopContainer>
         <BodyContainer>
         
-			{items.map(items => <Filme Movie={items.posterURL}/>)}
+			{items.map(items => <Filme Movie={items.posterURL} MovieId={items.id} />)}
 		
                
         </BodyContainer>
@@ -37,11 +37,11 @@ export default function Tela01(){
 
 
 
- function Filme({Movie}) {
+ function Filme({Movie, MovieId}) {
 
 	return (
 	  <BoxMovie>
-           <Link to="/Tela02">
+           <Link to={`/Tela02/${MovieId}`}>
                <img src={Movie}/>
            </Link>
        </BoxMovie>
