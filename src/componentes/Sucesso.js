@@ -39,6 +39,7 @@ export default function Sucesso({
                     <h3>CPF:{cpf}</h3>
                 </Informacoes>
             </ContainerInfos>
+            <button onClick={()=> navigate('/')} >Voltar pra Home</button>
         </Body>
     )
 }
@@ -52,6 +53,27 @@ const Body = styled.div`
     display:flex;
     flex-direction: column;
     align-items: center;
+
+    button{
+        margin-top: 62px;
+        height: 42px;
+        width: 225px;
+        left: 74px;
+        top: 622px;
+        border-radius: 3px;
+        border:none;
+        font-family: Roboto;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 21px;
+        letter-spacing: 0.04em;
+        text-align: center;
+        background: #E8833A;
+
+        color:#ffffff;
+
+
+    }
 `
 
 const Top = styled.div`
@@ -85,10 +107,10 @@ const ContainerInfos = styled.div``
 const Informacoes = styled.div`
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-right: 140px; 
+    margin-left:10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    
 
     h1 {
         font-family: Roboto;

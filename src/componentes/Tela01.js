@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -8,6 +8,8 @@ import Movie from '../Assets/img/image 3.svg'
 export default function Tela01({
      urlMovieImg,
      setUrlMovieImg}){  
+
+    const navigate = useNavigate();
 
     const [items, setItems] = useState(null);
 

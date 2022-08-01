@@ -235,7 +235,7 @@ const BodyContainer = styled.div`
        justify-content: center;
        align-items: center;
        border: 1px solid #808F9D;
-       background-color: ${(isAvailable) => !isAvailable? '#FBE192'
+       background-color: ${({isAvailable}) => isAvailable ? '#FBE192'
        :
        ({clicked}) => clicked ?  `#8DD7CF` : `#C3CFD9`};
        margin: 8px 6px;

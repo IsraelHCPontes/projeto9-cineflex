@@ -11,7 +11,10 @@ import Tela03 from './Tela03';
 import Sucesso from './Sucesso';
 
 
+
 export default function App(){
+
+     
 
     const [urlMovieImg, setUrlMovieImg] = useState("")
     const [nameMovieImg, setNameMovieImg] = useState("")
@@ -23,7 +26,7 @@ export default function App(){
     const [cpf, setCpf] = useState('')
     const [ids, setIds] = useState([]) 
     
-    
+   
     
     return (
         <BrowserRouter>
