@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 
-export default function Tela03(){
+export default function Tela03({urlMovieImg,nameMovieImg,setNameMovieImg, sessaoMovieImg, setSessaoMovieImg, dataMovie, setDataMovie}){
 
     const [seats, setSeats] = useState([]);
     const { sessaoId } = useParams()
@@ -16,6 +16,9 @@ export default function Tela03(){
         
 		requisicao.then(resposta => {
 			setSeats(resposta.data.seats);
+            setNameMovieImg(resposta.data.movie.title);
+            setSessaoMovieImg(resposta.data.day.weekday);
+            setDataMovie(resposta.data.day.date);
             console.log(seats)
 		});
 	}, []);
@@ -30,6 +33,16 @@ export default function Tela03(){
           {seats.map(({name})=><button>{name}</button>)}
          </BoxAssentos>
         </BodyContainer>
+        <Bottom>
+            <BoxMovie>
+                <img src={urlMovieImg}/>
+             </BoxMovie>
+             <Boxtexto>
+                <h1>{nameMovieImg}</h1>
+                <h3>{sessaoMovieImg} - {dataMovie}</h3>
+             </Boxtexto>
+            
+        </Bottom>
     </Container>  
     )
 }
@@ -43,6 +56,31 @@ const Container =styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    h1{
+        font-family: Roboto;
+        font-size: 25px;
+        font-weight: 400;
+        line-height: 30px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #293845;
+        margin-left: 14px;
+
+    }
+
+    h3{
+        font-family: Roboto;
+        font-size: 23px;
+        font-weight: 400;
+        line-height: 30px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #293845;
+        margin-left: 14px;
+        margin-left: 14px;
+    } 
+
 
 `;
 
@@ -84,5 +122,51 @@ const BodyContainer = styled.div`
         margin: 8px 6px;
     }
  `
+const Bottom = styled.div`
+height: 117px;
+width: 100%;
+left: 0px;
+bottom: 0px;
+border-radius: 0px;
+background: #DFE6ED;
+border: 1px solid #9EADBA;
+display: flex;
+align-items: center;
+position: fixed;
+`;
+
+const BoxMovie = styled.div`
+    margin-left: 10px;
+    margin-bottom: 11px;
+    height: 89px;
+    width: 64px;
+    border-radius: 3px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        height: 72px;
+        width: 48px;
+        left: 18px;
+        top: 782px;
+        border-radius: 0px;
 
 
+    }
+
+`
+
+const Boxtexto = styled.div`
+    height: 89px;
+    width: 287px;
+    left: 88px;
+    top: 774px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+
+`

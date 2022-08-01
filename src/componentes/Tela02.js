@@ -5,8 +5,11 @@ import axios from 'axios';
 
 
 
-export default function Tela02(){
-
+export default function Tela02({urlMovieImg, setUrlMovieImg, nameMovieImg,setNameMovieImg}){
+  
+   
+    console.log(urlMovieImg)
+    
     return(
 
     <Container>  
@@ -14,15 +17,21 @@ export default function Tela02(){
             <h2>Selecione o horário</h2>
         </TopContainer>
         <BodyContainer>
-            <Times />
+            <Times setUrlMovieImg={setUrlMovieImg} setNameMovieImg={setNameMovieImg}/>
         </BodyContainer>
+        <Bottom>
+            <BoxMovie>
+                <img src={urlMovieImg}/>
+             </BoxMovie>
+             <h1>{nameMovieImg}</h1>
+        </Bottom>
     </Container>  
 
     )
 }
 
 
-function Times(){
+function Times({setUrlMovieImg,setNameMovieImg}){
     const [day, setDay] = useState(null);
     const { movieId } = useParams()
     
@@ -32,8 +41,8 @@ function Times(){
 		const requisicao = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/movies/${movieId}/showtimes`);
 
 		requisicao.then(resposta => {
-			setDay(resposta.data.days);
-            console.log(movieId)
+			setDay(resposta.data.days);setUrlMovieImg(resposta.data.posterURL);setNameMovieImg(resposta.data.title)
+            
 		});
 	}, []);
 
@@ -58,6 +67,18 @@ const Container =styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    h1{
+        font-family: Roboto;
+        font-size: 26px;
+        font-weight: 400;
+        line-height: 30px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #293845;
+        margin-left: 14px;
+
+    }
 
 `;
 
@@ -115,8 +136,45 @@ const ContainerHorarios = styled.div`
         color: #FFFFFF;
 
     }
+    
 `
 
+const Bottom = styled.div`
+    height: 117px;
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+    border-radius: 0px;
+    background: #DFE6ED;
+    border: 1px solid #9EADBA;
+    display: flex;
+    align-items: center;
+    position: fixed;
+`;
 
 
+const BoxMovie = styled.div`
+    margin-left: 10px;
+    margin-bottom: 11px;
+    height: 89px;
+    width: 64px;
+    border-radius: 3px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        height: 72px;
+        width: 48px;
+        left: 18px;
+        top: 782px;
+        border-radius: 0px;
+
+
+    }
+
+`
 

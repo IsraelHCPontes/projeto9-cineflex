@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Movie from '../Assets/img/image 3.svg'
 
 
-export default function Tela01(){  
+export default function Tela01({urlMovieImg, setUrlMovieImg}){  
 
     const [items, setItems] = useState(null);
 
@@ -17,7 +17,9 @@ export default function Tela01(){
 		});
 	}, []);
 
-	
+	console.log(urlMovieImg)
+  
+    
 
     return((items === null)? <img src="loading.gif" />:
     <Container>  
@@ -25,10 +27,7 @@ export default function Tela01(){
             <h2>Selecione o filme</h2>
         </TopContainer>
         <BodyContainer>
-        
-			{items.map(items => <Filme Movie={items.posterURL} MovieId={items.id} />)}
-		
-               
+            {items.map(items => <Filme Movie={items.posterURL} MovieId={items.id} setUrlMovieImg={setUrlMovieImg} />)}
         </BodyContainer>
     </Container>  
     )
@@ -36,15 +35,17 @@ export default function Tela01(){
 
 
 
- function Filme({Movie, MovieId}) {
-
+ function Filme({Movie, MovieId,setUrlMovieImg}) {
+    
+    
 	return (
 	  <BoxMovie>
            <Link to={`/Tela02/${MovieId}`}>
                <img src={Movie}/>
            </Link>
        </BoxMovie>
-	);
+       
+	)
 }
 
 
