@@ -5,7 +5,9 @@ import styled from 'styled-components';
 import Movie from '../Assets/img/image 3.svg'
 
 
-export default function Tela01({urlMovieImg, setUrlMovieImg}){  
+export default function Tela01({
+     urlMovieImg,
+     setUrlMovieImg}){  
 
     const [items, setItems] = useState(null);
 
@@ -35,7 +37,10 @@ export default function Tela01({urlMovieImg, setUrlMovieImg}){
 
 
 
- function Filme({Movie, MovieId,setUrlMovieImg}) {
+ function Filme({
+    Movie,
+    MovieId,
+    setUrlMovieImg}) {
     
     
 	return (

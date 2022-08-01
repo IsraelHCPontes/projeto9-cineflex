@@ -61,6 +61,8 @@ function Times({setUrlMovieImg,setNameMovieImg}){
 } 
 
 
+
+
 const Container =styled.div`
     margin-top: 120px;
     display: flex;
@@ -95,6 +97,7 @@ const TopContainer = styled.div`
 
 const BodyContainer = styled.div`
     margin-top: 50px;
+    margin-bottom: 120px;
     width: 320px;
     display: flex;
     flex-direction: column;
@@ -121,6 +124,7 @@ const ContainerHorarios = styled.div`
 
     button {
         margin-right: 9px;
+        margin-bottom: 10px;
         height: 43px;
         min-width: 83px;
         border-radius: 3px;
@@ -155,7 +159,6 @@ const Bottom = styled.div`
 
 const BoxMovie = styled.div`
     margin-left: 10px;
-    margin-bottom: 11px;
     height: 89px;
     width: 64px;
     border-radius: 3px;

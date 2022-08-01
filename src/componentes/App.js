@@ -8,6 +8,7 @@ import NavBar from './NavBar';
 import Tela01 from './Tela01';
 import Tela02 from './Tela02';
 import Tela03 from './Tela03';
+import Sucesso from './Sucesso';
 
 
 export default function App(){
@@ -16,6 +17,12 @@ export default function App(){
     const [nameMovieImg, setNameMovieImg] = useState("")
     const [sessaoMovieImg, setSessaoMovieImg] = useState("")
     const [dataMovie, setDataMovie] = useState("")
+    const [assentos, setAssentos] = useState([])
+
+    const [name, setName] = useState('')
+    const [cpf, setCpf] = useState('')
+    const [ids, setIds] = useState([]) 
+    
     
     
     return (
@@ -23,7 +30,13 @@ export default function App(){
             <NavBar/>
             <Routes>
               <Route path="/" element={<Tela01 urlMovieImg={urlMovieImg} setUrlMovieImg={setUrlMovieImg} />}/>  
-              <Route path="/Tela02/:movieId" element={<Tela02 urlMovieImg={urlMovieImg} setUrlMovieImg={setUrlMovieImg} setNameMovieImg={setNameMovieImg} nameMovieImg={nameMovieImg}/>}/>            
+
+              <Route path="/Tela02/:movieId" element={<Tela02 
+              urlMovieImg={urlMovieImg}
+              setUrlMovieImg={setUrlMovieImg}
+              setNameMovieImg={setNameMovieImg}
+              nameMovieImg={nameMovieImg}/>}/>   
+
               <Route path="/Tela03/:sessaoId" element={<Tela03
                urlMovieImg={urlMovieImg} 
                setUrlMovieImg={setUrlMovieImg}
@@ -33,7 +46,30 @@ export default function App(){
                setSessaoMovieImg={setSessaoMovieImg}
                dataMovie={dataMovie}
                setDataMovie={setDataMovie}
-               />}/>   
+               name={name}
+               setName={setName}
+               cpf={cpf}
+               setCpf={setCpf}
+               ids={ids} 
+               setIds={setIds}
+               assentos={assentos}
+               setAssentos={setAssentos}
+               />}/>  
+
+               <Route path="/sucesso" element={<Sucesso 
+                        name={name}
+                        setName={setName}
+                        cpf={cpf}
+                        setCpf={setCpf}
+                        ids={ids} 
+                        setIds={setIds}
+                        nameMovieImg={nameMovieImg}
+                        sessaoMovieImg={sessaoMovieImg}
+                        dataMovie={dataMovie}
+
+                        assentos={assentos}
+
+                        />}/>
              </Routes>
         </BrowserRouter>
          )
