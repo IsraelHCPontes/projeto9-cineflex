@@ -69,9 +69,9 @@ export default function Tela03({
          </BoxExemplos>
          <form onSubmit={handleForm}>
             <label for='forName'>Nome do comprador:</label>
-            <input id='forname'onChange={(e) => setName(e.target.value)} type='text'name='nome' placeholder='Digite seu nome...' value={name}/>
+            <input id='forname'onChange={(e) => setName(e.target.value)} type='text'name='nome' placeholder='Digite seu nome...' value={name} required/>
             <label for='forCpf'>CPF do comprador:</label>
-            <input id='forCpf' onChange={(e) => setCpf(e.target.value)}  type='text'name='nome' placeholder='Digite seu CPF...' value={cpf}/>
+            <input id='forCpf' onChange={(e) => setCpf(e.target.value)}  type='text'name='cpf' pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})" placeholder='Digite seu CPF...' value={cpf} required/>
             <button>Reservar assento(s)</button>
          </form>
         </BodyContainer>
@@ -93,13 +93,23 @@ function Assentos({names,isAvailable,id ,ids, setIds,assentos,setAssentos}){
     const [clicked, setClicked] = useState(false)
     console.log(isAvailable)
     
+
+function Ocupado({isAvailable, clicked, ids, id, assentos,names,setIds, setClicked, setAssentos}){
+    if(isAvailable === false){
+        console.log("Cadeira ocupada")
+    }else{
+        setClicked(!clicked); 
+        setIds([...ids, id]); 
+        setAssentos([...assentos,names])
+    }
+}
+
+   
     return(
-    <Button clicked={clicked} isAvailable={isAvailable}  onClick={() => {setClicked(!clicked); setIds([...ids, id]); setAssentos([...assentos,names])}} >{names}</Button>
+    <Button clicked={clicked} isAvailable={isAvailable}  onClick={Ocupado({isAvailable,setIds, setClicked,setAssentos, clicked, ids, id, assentos,names})} >{names}</Button>
     )
 
 }
-
-
 
 
 const Container =styled.div`
@@ -235,7 +245,7 @@ const BodyContainer = styled.div`
        justify-content: center;
        align-items: center;
        border: 1px solid #808F9D;
-       background-color: ${({isAvailable}) => isAvailable ? '#FBE192'
+       background-color: ${({isAvailable}) => !isAvailable ? '#FBE192'
        :
        ({clicked}) => clicked ?  `#8DD7CF` : `#C3CFD9`};
        margin: 8px 6px;
